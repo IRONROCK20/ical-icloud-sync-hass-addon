@@ -1,19 +1,17 @@
 ARG BUILD_FROM
-FROM BUILD_FROM
+ARG BUILD_VERSION
+FROM ${BUILD_FROM}
+
+# Set S6 wait time
+ENV S6_CMD_WAIT_FOR_SERVICES=1 \
+    S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0 \
+    S6_SERVICES_GRACETIME=0
 
 ENV ICLOUD_USER="" \
     ICLOUD_PASS="" \
     ICLOUD_CALENDAR="family" \
     ICAL_URL="" \
     ICAL_POLL_INTERVAL=60
-
-RUN \
-    # Allow UID and GID setting
-    if [ -f /etc/cont-init.d/02-tamper-check ]; then rm /etc/cont-init.d/02-tamper-check; fi \
-    && sed -i 's/bash/bashio/g' /etc/cont-init.d/10-adduser \
-    && sed -i 's/{PUID:-911}/(bashio::config "PUID")/g' /etc/cont-init.d/10-adduser \
-    && sed -i 's/{PGID:-911}/(bashio::config "PGID")/g' /etc/cont-init.d/10-adduser
-
 
 # Add rootfs
 COPY rootfs/ /
