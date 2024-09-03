@@ -31,7 +31,6 @@ jobs:
         uses: home-assistant/builder@master
         with:
           args: |
-            --test \
             --amd64 \
             --target ical-icloud-sync-addon \
             --docker-hub ${{ env.REGISTRY }}/${{ github.actor }}
