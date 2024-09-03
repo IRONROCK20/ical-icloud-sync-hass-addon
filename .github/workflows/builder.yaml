@@ -34,5 +34,4 @@ jobs:
             --test \
             --amd64 \
             --target ical-icloud-sync-addon \
-            --image ${{ env.IMAGE_NAME }} \
-            --docker-hub ${{ env.REGISTRY }}
+            --docker-hub ${{ env.REGISTRY }}/${{ github.actor }}
