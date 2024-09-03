@@ -28,9 +28,10 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Test build
-        uses: home-assistant/builder@master
+        uses: mattbsea/home-assistant-builder@master
         with:
           args: |
             --amd64 \
             --target ical-icloud-sync-addon \
             --docker-hub ${{ env.REGISTRY }}/${{ github.actor }}
+            --docker-repo ${{ env.REGISTRY }}
