@@ -1,5 +1,3 @@
-arch:
-  - amd64
 description: Sync ical url to icloud calendar
 init: false
 image: ghcr.io/mattbsea/ical-icloud-sync-{arch}
